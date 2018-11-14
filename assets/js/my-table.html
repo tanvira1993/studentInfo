@@ -1,0 +1,113 @@
+<div class="row" style="margin-bottom:10px">
+	<!-- PAGINATION DROPDOWN STARTS -->
+	<div class="col-md-3">
+		<select ng-if="tableData.paginationDropDown" ng-model="filter.limit" ng-change="getallData()" class="form-control">
+			<option ng-model="filter.limit" ng-repeat="(key, value) in tableData.paginationDropDownValues" value="{{value}}">{{key}}</option>
+		</select>
+	</div>
+	<!-- PAGINATION DROPDOWN ENDS -->
+	
+	<div class="col-md-6">
+<!-- 		<pre>
+			{{tableData.paginationDropDownValues | json}}
+		</pre>
+	-->
+</div>
+
+<!-- GLOBAL SEARCH STARTS -->
+<div class="col-md-3">
+	<input ng-if="tableData.globalSearch" ng-model="filter.globalSearch" ng-change="getallData()" class="form-control" placeholder="Search all columns">
+</div>
+<!-- GLOBAL SEARCH ENDS -->
+</div>
+<table ng-class="[tableData.tableClass]">
+	<thead>
+		
+		<!-- COLUMN HEAD AND SORTING STARTS -->
+		<tr>
+			<th class="text-left titles" ng-repeat="(key, value) in tableData.columns" style="{{value.thStyle}}" ng-click="value.sortable && sortBy(value.key)">{{value.alias}}<i class="pull-right" style="font-size:25px" ng-class="[{'fa fa-angle-down':filter.orderType=='desc'}, {'fa fa-angle-up':filter.orderType=='asc'} ,{'hide': filter.orderBy != value.key}]">
+			</i>
+		</th>
+	</tr>
+	<!-- COLUMN HEAD AND SORTING ENDS -->
+
+	<!-- COLUMNWISE FILTER AND SEARCHING STARTS -->
+	<tr>
+		<th ng-repeat="(key, value) in tableData.columns">
+			<!-- COLUMN SEARCH STARTS -->
+			<div ng-if="value.searchable && value.rangeSearch==false">
+				<input type="{{value.columnType}}" ng-change="getallData()" ng-model="filter.columns[value.key][0].filterValue" class="form-control input-sm">
+				<select ng-if="value.searchComparisons!='*'" ng-model="filter.columns[value.key][0].filterType" class="form-control input-sm">
+					<option ng-repeat="(k, v) in value.searchComparisons" value="{{v.selectValue}}">
+						{{v.selectAlias}}
+					</option>
+				</select>
+				<select ng-if="value.searchComparisons=='*'" ng-change="getallData()" ng-model="filter.columns[value.key][0].filterType" class="form-control input-sm">
+					<option value=">">Bigger than</option>				
+					<option value="<">Less than</option>				
+					<option value="=">Equal to</option>				
+					<option value="like">Text search</option>				
+				</select>
+			</div>
+			<!-- COLUMN SEARCH ENDS -->
+
+			<!-- RANGE SEARCH STARTS -->
+			<div ng-if="value.searchable && value.rangeSearch!=false">
+				<input type="{{value.columnType}}" ng-change="getallData()" class="form-control input-sm" ng-model="filter.columns[value.key][0].filterValue" placeholder="Bigger than">
+				<input style="margin-top:3px" ng-change="getallData()" type="{{value.columnType}}" ng-model="filter.columns[value.key][1].filterValue" class="form-control input-sm" placeholder="Less than">
+			</div>
+			<!-- RANGE SEARCH ENDS -->
+		</th>
+	</tr>
+	<!-- COLUMNWISE FILTER AND SEARCHING ENDS -->
+</thead>
+<tbody>
+	<!-- LOADER DIV STARTS -->
+	<tr ng-if="tableData.loading">
+		<td colspan="{{tableData.columns.length}}">
+			<div style="width:100%;height:200px">
+				<i style="margin-left:47%;margin-top:100px;font-size:50px" class="fa fa-circle-o-notch fa-spin"></i>
+			</div>
+		</td>
+	</tr>
+	<!-- LOADER DIV ENDS -->
+
+	<tr ng-if="!tableData.loading&&allData.length==0">
+		<td class="text-center" colspan="{{tableData.columns.length}}">
+			<h3>No Data Found</h3>
+		</td>
+	</tr>
+
+	<!-- TABLE DATA ROW STARTS -->
+	<tr ng-if="!tableData.loading" ng-repeat="(key, value) in allData track by $index">
+		<td ng-repeat="(k, v) in tableData.columns track by $index">
+			
+			<div ng-if="v.hasHtml" bind-html-compile="value[v.key]">
+			</div>
+
+			<div ng-if="v.hasHtmlValue" bind-html-compile="prepareHtml(value,v)">
+			</div>
+
+			<div ng-if="!v.hasHtml && !v.hasHtmlValue" ng-bind="value[v.key]">
+			</div>
+		</td>
+	</tr>
+	<!-- COLUMN HEAD AND SORTING ENDS -->
+</tbody>
+<tfoot>
+	<tr ng-if="tableData.pagination">
+		<!-- PAGINATION STARTS -->
+		<td colspan="{{tableData.columns.length}}" class="text-center">
+			<ul class="pagination">
+				<li><a href="#" ng-if="!prevDisabled" ng-click="changePaginationPrevious(selectedPagination)">&laquo;</a></li>
+				<li ng-repeat="(key, value) in pagination" ng-class="{'active': value === selectedPagination}">
+					<a ng-if="value !== '...'" href="" ng-click="changePagination(value-1)">{{value}}</a>
+					<a ng-if="value === '...'" href="">{{value}}</a>
+				</li>
+				<li><a href="#" ng-if="!nextDisabled" ng-click="changePaginationNext(selectedPagination)">&raquo;</a></li>
+			</ul>
+		</td>
+		<!-- PAGINATION ENDS -->
+	</tr>
+</tfoot>
+</table>
