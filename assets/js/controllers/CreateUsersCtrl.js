@@ -5,6 +5,11 @@
 		
 		$scope.title = 'Quick Shortcuts';
 
+		/*$('.datepicker').datepicker({
+			dateFormat: 'yy-mm-dd'
+		});*/
+
+
 		$scope.userModel = {
 			firstName:null, 
 			lastName:null,
@@ -18,6 +23,10 @@
 
 		}
 
+		$( ".datepicker" ).change(function() {
+			$scope.userModel.dob = $("#datetimepicker").val();
+		});
+		
 		$scope.submitData = function()
 		{
 			$http({
@@ -28,7 +37,9 @@
 					'Content-Type': 'application/x-www-form-urlencoded'
 				}
 			}).then(function (response){
+				$location.path('/users');
 				console.log(response)
+
 			},function (error){
 				console.log(error);
 			});

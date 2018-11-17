@@ -5,6 +5,9 @@
 		
 		$scope.title = 'Quick Shortcuts';
 		$scope.userId = $routeParams.id;
+
+		
+
 		
 		//Get user information by ID
 		$scope.getUserInfById = function()
@@ -20,6 +23,10 @@
 
 		}
 
+		$( ".datepicker" ).change(function() {
+			$scope.userModel.dob = $("#datetimepicker").val();
+		});
+		
 		$scope.submitUpdateData = function()
 		{
 			$http({
@@ -30,6 +37,7 @@
 					'Content-Type': 'application/x-www-form-urlencoded'
 				}
 			}).then(function (response){
+				$location.path('/users');
 				console.log(response)
 			},function (error){
 				console.log(error);

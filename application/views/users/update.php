@@ -3,14 +3,14 @@
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">First Name</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputEmail3" ng-model="userModel.firstName" >
+        <input type="text" class="form-control" ng-model="userModel.firstName" >
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Last Name</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputEmail3" ng-model="userModel.lastName">
+        <input type="text" class="form-control" ng-model="userModel.lastName">
       </div>
     </div>
 
@@ -30,14 +30,14 @@
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" ng-model="userModel.email" id="inputEmail3" placeholder="Email">
+        <input type="email" class="form-control" ng-model="userModel.email" placeholder="Email">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Date of Birth</label>
       <div class="col-sm-10">
-        <input type="date" class="form-control" id="inputEmail3" ng-model="userModel.dob" placeholder="Date of Birth">
+        <input type="text" class="form-control datepicker" id="datetimepicker" ng-model="userModel.dob" placeholder="Date of Birth">
       </div>
     </div>
 
@@ -46,14 +46,14 @@
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputEmail3" ng-model="userModel.phone" placeholder="Enter Phone Number">
+        <input type="text" class="form-control"  ng-model="userModel.phone" placeholder="Enter Phone Number">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Address</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputEmail3" ng-model="userModel.address"placeholder="Enter Address here">
+        <input type="text" class="form-control"  ng-model="userModel.address"placeholder="Enter Address here">
       </div>
     </div>
 
@@ -81,3 +81,9 @@
     </pre>
   </form>
 </div>
+
+<script>
+  $('.datepicker').datepicker({
+    dateFormat: 'yy-mm-dd'
+  });
+</script>

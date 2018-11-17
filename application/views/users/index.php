@@ -13,6 +13,8 @@
 					<th>Status</th>			
 					<th>Update</th>			
 				</tr>
+
+				
 			</thead>
 			<tbody>
 				<tr ng-repeat="(key, value) in allUsers| filter:{id: search.id, firstName: search.firstName, lastName: search.lastName, gender: search.gender, dob: search.dob, email: search.email, phone: search.phone}">

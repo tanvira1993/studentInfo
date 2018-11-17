@@ -6,9 +6,14 @@
 	<link rel="shortcut icon" type="image/png" href="<?php echo base_url()?>assets/images/faveicon.png"/>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>bower_components/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>bower_components/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>bower_components/bootstrap/datepicker.css">
+
+
 	<link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style.css">
 	<link href="<?php echo base_url()?>bower_components/AngularJS-Toaster/toaster.css" rel="stylesheet" />
+	
+
 </head>
 <body>
 
@@ -75,6 +80,8 @@
 	<!-- For dialog box  -->
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/jquery-ui.css">
 	<script src="<?php echo base_url()?>assets/js/jquery-1.12.4/jquery-1.12.4.js"></script>
+	<script src="<?php echo base_url()?>assets/js/jquery-1.12.4/bootstrap-datepicker.js"></script>
 	<script src="<?php echo base_url()?>assets/css/jquery-ui.js"></script>
+	
 </body>
 </html>

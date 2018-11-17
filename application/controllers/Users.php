@@ -81,7 +81,6 @@ class Users extends CI_Controller {
 		$data['address'] = $userArr['address'];
 		$data['status'] = $userArr['status'];
 		$data['phone'] = $userArr['phone'];
-		$data['phone'] = $userArr['phone'];
 		
 		//exit;
 		$data = $this->userModel->update($userArr['id'],$data);
@@ -94,9 +93,14 @@ class Users extends CI_Controller {
 
 	public function getUserInfo($id)
 	{
+		$this->benchmark->mark('code_start');
+
 
 		$data = $this->userModel->UserInfo($id);
-		echo json_encode(array('success'=>1,'data'=>$data));
+		$this->benchmark->mark('code_end');
+		$executeDuration = $this->benchmark->elapsed_time('code_start', 'code_end');
+		json_success($data,200, $executeDuration);
+
 	}
 }
 
