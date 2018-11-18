@@ -31,6 +31,7 @@ class userModel extends CI_Model {
 		$this->db->select('address');
 		$this->db->select('phone');
 		$this->db->select('status');
+		$this->db->select('file');
 		$this->db->select('create_date as createDate');
 
 		$this->db->from('users_info');

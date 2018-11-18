@@ -122,7 +122,7 @@ class Users extends CI_Controller {
 		}
 
 		$data = array();
-		if (!$this->upload->do_upload('image')) {
+		if (!$this->upload->do_upload('image')) { 
 			// upload failed
 			$jsonData = array('error' => true, 'message' => $this->upload->display_errors('', ''), 'heading' => 'validation error');
 		} else {
