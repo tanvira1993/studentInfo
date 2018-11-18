@@ -1,5 +1,5 @@
 <div class="container">
-  <form name="userInfo" method="post">
+  <form name="userInfo" method="post" enctype="multipart/form-data">
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">First Name</label>
       <div class="col-sm-10">
@@ -63,6 +63,14 @@
         <input type="password" class="form-control"  ng-model="userModel.password" placeholder="Password">
       </div>
     </div>
+
+    <div class="form-group row">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">File</label>
+      <div class="col-sm-10">
+        <input type="file" class="form-control" name="image" nv-file-select uploader="uploader"  ng-click="uploader.queue[0].upload"  ng-model="userModel.image" placeholder="Select image">
+      </div>
+    </div>
+
     <div class="form-group row" >
       <label for="inputEmail3" class="col-sm-2 col-form-label">Status</label>
       <div class="col-sm-10">

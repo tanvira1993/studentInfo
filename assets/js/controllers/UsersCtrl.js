@@ -26,6 +26,21 @@
 			});
 		}
 
+		$scope.deleteUser = function(id)
+		{
+			$http({
+				url:"users/delete/"+id,
+				method: "get"
+			}).then (function(response){
+				$scope.getUserInfo();
+				alert ("User Deleted");	
+			}),(function(response){
+				//show_toastr("error",response.heading,response.error_message);
+			});
+
+
+		}
+
 		$scope.getUserInfo();
 
 

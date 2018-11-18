@@ -77,6 +77,15 @@ class userModel extends CI_Model {
 
 	}
 
+	public function deleteUserInfo($userId)
+	{
+		$this->db->delete('users_info', array('id'=>$userId));
+		
+		//return $this->db->delete_id();
+
+
+	}
+
 }
 
 

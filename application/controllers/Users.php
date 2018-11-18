@@ -34,12 +34,7 @@ class Users extends CI_Controller {
 	{
 		$userArr = $this->input->post();
 
-		echo '<pre>';
-		print_r($userArr);
-		echo '</pre>';
 		
-
-
 		$data = [];
 		$data['first_name'] = $userArr['firstName'];
 		$data['last_name'] = $userArr['lastName'];
@@ -48,11 +43,9 @@ class Users extends CI_Controller {
 		$data['email'] = $userArr['email'];
 		$data['address'] = $userArr['address'];
 		$data['status'] = $userArr['status'];
-		$data['phone'] = $userArr['phone'];
-		$data['phone'] = $userArr['phone'];
-		
+		$data['phone'] = $userArr['phone'];		
 		$data['password'] = sha1($userArr['password']);
-
+		$data['file'] = isset($userArr['file']) ? $userArr['file'] : null;
 
 		//exit;
 		$data = $this->userModel->insertUserInfo($data);
@@ -66,10 +59,6 @@ class Users extends CI_Controller {
 	{
 		$userArr = $this->input->post();
 
-		echo '<pre>';
-		print_r($userArr);
-		echo '</pre>';
-		
 
 
 		$data = [];
@@ -91,6 +80,17 @@ class Users extends CI_Controller {
 	}
 
 
+	public function delete($id)
+	{
+		//$userArr = $this->input->post();
+		
+		$this->userModel->deleteUserInfo($id);
+		json_success();
+
+
+	}
+
+
 	public function getUserInfo($id)
 	{
 		$this->benchmark->mark('code_start');
@@ -102,6 +102,37 @@ class Users extends CI_Controller {
 		json_success($data,200, $executeDuration);
 
 	}
+
+	public function uploadFile()
+	{
+		$fileData = $this->input->post();
+		
+		$config['upload_path']   = './uploads';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+		$config['max_size']      = 51200;
+			// $config['max_width']     = 4000;
+			// $config['max_height']    = 4000;
+		$config['remove_spaces'] = TRUE;
+		$config['encrypt_name']  = TRUE;
+
+		$this->load->library('upload', $config);
+
+		if (!is_dir('uploads')) {
+			mkdir('./uploads', 0777, true);
+		}
+
+		$data = array();
+		if (!$this->upload->do_upload('image')) {
+			// upload failed
+			$jsonData = array('error' => true, 'message' => $this->upload->display_errors('', ''), 'heading' => 'validation error');
+		} else {
+			$jsonData      = array('success' => true, 'data' => $this->upload->data());
+		}
+
+		echo json_encode($jsonData);
+	}
+
+
 }
 
 /* End of file UsersController.php */

@@ -11,7 +11,9 @@
 					<th>Email<br/><input ng-model="search.email" class="form-control input-sm"></th>
 					<th>Phone<br/><input ng-model="search.phone" class="form-control input-sm"></th>
 					<th>Status</th>			
-					<th>Update</th>			
+					<th>Update</th>
+					<th>Delete</th>			
+
 				</tr>
 
 				
@@ -27,6 +29,8 @@
 					<td>{{value.phone}}</td>
 					<td>{{value.status}}</td>
 					<td><a class="btn btn-info" type="button" ng-href="#!/updateUserInfo/{{value.id}}/">Update Info</a></td>
+					<td><a class="btn btn-danger" type="button" ng-click="deleteUser(value.id)">Delete</a></td>
+
 				</tr>
 			</tbody>
 		</table>
