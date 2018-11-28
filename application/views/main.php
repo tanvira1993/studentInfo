@@ -45,6 +45,12 @@
 				<li class="active"><a  href="#!/">Home</a></li>
 				<li><a href="#!/users">Users</a></li>
 				<li><a href="#!/create_user">Create Users</a></li>
+				<li><a href="#!/user_panel">User Panel</a></li>
+				<li><a href="#!/admin_panel">Admin Panel</a></li>
+				<li><a href="#!/Login_panel">Login Panel</a></li>
+
+
+
 			</ul>
 		</div>
 	</nav>

@@ -132,6 +132,10 @@ class Users extends CI_Controller {
 		echo json_encode($jsonData);
 	}
 
+	public function admin(){
+		$this->load->view('', $data, FALSE);
+	}
+
 
 }
 

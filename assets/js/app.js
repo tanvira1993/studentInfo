@@ -64,6 +64,18 @@ DemoApp.config(['$routeProvider','$locationProvider', function ($routeProvider,$
 	})
 
 
+	.when('/admin_panel',  {
+		templateUrl: BASEURL+'users/admin',
+		controller: 'adminUsersCtrl',
+		resolve: {
+			loadAsset: ['$ocLazyLoad', function($ocLazyLoad) {
+				return $ocLazyLoad.load([
+					'assets/js/controllers/adminUsersCtrl.js',
+					]);
+			}]
+		}
+	})
+
 
 	.otherwise({ redirectTo: '/error/404' });
 }]);
