@@ -31,6 +31,7 @@ class userModel extends CI_Model {
 		$this->db->select('address');
 		$this->db->select('phone');
 		$this->db->select('status');
+		$this->db->select('file');
 		$this->db->select('create_date as createDate');
 
 		$this->db->from('users_info');
@@ -74,6 +75,15 @@ class userModel extends CI_Model {
 
 		return $this->db->insert_id();
 		//return $this->db->get()->row_array();
+
+	}
+
+	public function deleteUserInfo($userId)
+	{
+		$this->db->delete('users_info', array('id'=>$userId));
+		
+		//return $this->db->delete_id();
+
 
 	}
 

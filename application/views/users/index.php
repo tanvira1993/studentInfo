@@ -11,8 +11,12 @@
 					<th>Email<br/><input ng-model="search.email" class="form-control input-sm"></th>
 					<th>Phone<br/><input ng-model="search.phone" class="form-control input-sm"></th>
 					<th>Status</th>			
-					<th>Update</th>			
+					<th>Update</th>
+					<th>Delete</th>
+					<th>Picture</th>	
 				</tr>
+
+				
 			</thead>
 			<tbody>
 				<tr ng-repeat="(key, value) in allUsers| filter:{id: search.id, firstName: search.firstName, lastName: search.lastName, gender: search.gender, dob: search.dob, email: search.email, phone: search.phone}">
@@ -25,6 +29,9 @@
 					<td>{{value.phone}}</td>
 					<td>{{value.status}}</td>
 					<td><a class="btn btn-info" type="button" ng-href="#!/updateUserInfo/{{value.id}}/">Update Info</a></td>
+					<td><a class="btn btn-danger" type="button" ng-click="deleteUser(value.id)">Delete</a></td>
+					<td><img src="./uploads/{{value.file}}.jpg" alt="" width="40" height="20"></td>
+
 				</tr>
 			</tbody>
 		</table>

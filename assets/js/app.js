@@ -36,6 +36,8 @@ DemoApp.config(['$routeProvider','$locationProvider', function ($routeProvider,$
 			}]
 		}
 	})
+
+	
 	.when('/create_user',  {
 		templateUrl: BASEURL+'users/create',
 		controller: 'CreateUsersCtrl',
@@ -43,7 +45,8 @@ DemoApp.config(['$routeProvider','$locationProvider', function ($routeProvider,$
 		resolve: {
 			loadAsset: ['$ocLazyLoad', function($ocLazyLoad) {
 				return $ocLazyLoad.load([
-					'assets/js/controllers/CreateUsersCtrl.js',
+					'bower_components/angular-file-upload/dist/angular-file-upload.js',
+					'assets/js/controllers/CreateUsersCtrl.js'
 					]);
 			}]
 		}
@@ -60,6 +63,18 @@ DemoApp.config(['$routeProvider','$locationProvider', function ($routeProvider,$
 		}
 	})
 
+
+	.when('/admin_panel',  {
+		templateUrl: BASEURL+'users/admin',
+		controller: 'adminUsersCtrl',
+		resolve: {
+			loadAsset: ['$ocLazyLoad', function($ocLazyLoad) {
+				return $ocLazyLoad.load([
+					'assets/js/controllers/adminUsersCtrl.js',
+					]);
+			}]
+		}
+	})
 
 
 	.otherwise({ redirectTo: '/error/404' });

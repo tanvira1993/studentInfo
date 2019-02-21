@@ -1,16 +1,16 @@
 <div class="container">
-  <form name="userInfo" method="post">
+  <form name="userInfo" method="post" enctype="multipart/form-data">
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">First Name</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputEmail3" ng-model="userModel.firstName" placeholder="First Name">
+        <input type="text" class="form-control"  ng-model="userModel.firstName" placeholder="First Name">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Last Name</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputEmail3" ng-model="userModel.lastName"placeholder="Last Name">
+        <input type="text" class="form-control"  ng-model="userModel.lastName"placeholder="Last Name">
       </div>
     </div>
 
@@ -30,14 +30,14 @@
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" ng-model="userModel.email" id="inputEmail3" placeholder="Email">
+        <input type="email" class="form-control" ng-model="userModel.email"  placeholder="Email">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Date of Birth</label>
       <div class="col-sm-10">
-        <input type="date" class="form-control" id="inputEmail3" ng-model="userModel.dob" placeholder="Date of Birth">
+        <input type="text" class="form-control datepicker"  id="datetimepicker" ng-model="userModel.dob" placeholder="Date of Birth">
       </div>
     </div>
 
@@ -46,23 +46,31 @@
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputEmail3" ng-model="userModel.phone" placeholder="Enter Phone Number">
+        <input type="text" class="form-control" ng-model="userModel.phone" placeholder="Enter Phone Number">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Address</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputEmail3" ng-model="userModel.address"placeholder="Enter Address here">
+        <input type="text" class="form-control"  ng-model="userModel.address"placeholder="Enter Address here">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputEmail3" ng-model="userModel.password" placeholder="Password">
+        <input type="password" class="form-control"  ng-model="userModel.password" placeholder="Password">
       </div>
     </div>
+
+    <div class="form-group row">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">File</label>
+      <div class="col-sm-10">
+        <input type="file" class="form-control" name="image" nv-file-select uploader="uploader"  ng-click="uploader.queue[0].upload"  ng-model="userModel.image" placeholder="Select image">
+      </div>
+    </div>
+
     <div class="form-group row" >
       <label for="inputEmail3" class="col-sm-2 col-form-label">Status</label>
       <div class="col-sm-10">
@@ -86,3 +94,8 @@
     </pre>
   </form>
 </div>
+<script>
+  $('.datepicker').datepicker({
+    dateFormat: 'yy-mm-dd'
+  });
+</script>
